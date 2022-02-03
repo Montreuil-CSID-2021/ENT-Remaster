@@ -60,6 +60,11 @@ p {
   align-items: center;
 }
 
+.schedule-container {
+  margin-top: 60px;
+  height: calc(100vh - 60px);
+}
+
 a,
 a:visited,
 a:hover {
@@ -73,4 +78,6 @@ a:hover {
 
 body {
   background-color: #DCE4F4;
+  padding: 0;
+  margin: 0;
 }
