@@ -1,5 +1,5 @@
 import {HttpClient} from "@angular/common/http";
-import {firstValueFrom, lastValueFrom, map} from "rxjs";
+import {lastValueFrom} from "rxjs";
 
 export interface EDTDay {
   mat: string,

@@ -1,9 +1,9 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <img
-    width="40"
-    alt="Angular Logo"
-    src="https://www.iut.univ-paris8.fr/sites/default/files/LOGO%20IUT%20MONTREUIL%20Moyen.jpg"
+    height="50"
+    alt="IUT Logo"
+    src="https://www.iut.univ-paris8.fr/sites/default/files/inline-images/LOGO%20IUT%20MONTREUIL%20BLANC%20Moyen.png"
   />
   <span>{{title}}</span>
   <div class="spacer"></div>
@@ -17,17 +17,55 @@
     [eventSettings]='eventSettings'
     startHour="08:00"
     endHour="19:00"
-    firstDayOfWeek="1"
+    timeFormat="HH:mm"
+    dateFormat="dd MMMM yyyy"
+    [firstDayOfWeek]=fistDayOfWeek
     width="100vw"
     height="100%"
     [showWeekend]=false
-    currentView="Week">
+    currentView="Week"
+    cssClass='schedule-event-template'
+    (eventRendered)="applyCategoryColor($event)">
     <e-views>
       <e-view option="Day"></e-view>
       <e-view option="Week"></e-view>
-      <e-view option="Month"></e-view>
+      <e-view option="Month">
+        <ng-template #eventTemplate let-data>
+          <div class='template-wrap'>
+            <span class="e-time">{{data.StartTime.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}}</span><span class="e-subject">{{data.Subject}}</span>
+          </div>
+        </ng-template>
+      </e-view>
       <e-view option="Agenda"></e-view>
     </e-views>
+
+    <ng-template #eventSettingsTemplate let-data>
+      <div class='template-wrap'>
+        <div class="subject">{{data.Subject}}</div>
+        <div class="location"><span class="mdi mdi-map-marker"></span> {{data.Location}}</div>
+        <div class="teacher"><span class="mdi mdi-account"></span> {{data.Teacher}}</div>
+        <div class="time">
+          <span class="mdi mdi-clock"></span>
+          {{data.StartTime.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}}
+          - {{data.EndTime.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}}
+          ({{data.DuringTime.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}})
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #quickInfoTemplatesContent let-data>
+      <div class="quick-info-content">
+        <div class="e-cell-content">
+          <div class="e-location"><span class="mdi mdi-map-marker"></span> {{data.Location}}</div>
+          <div class="e-location"><span class="mdi mdi-account"></span> {{data.Teacher}}</div>
+          <div class="e-date-time">
+            <span class="mdi mdi-clock"></span>
+            {{data.StartTime.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}}
+            - {{data.EndTime.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}}
+            ({{data.DuringTime.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}})
+          </div>
+        </div>
+      </div>
+    </ng-template>
   </ejs-schedule>
 </div>
-
