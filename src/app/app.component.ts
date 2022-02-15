@@ -12,7 +12,7 @@ import {
 import {EDTApi} from "./edt/EDTApi";
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-edt',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   providers: [DayService, WeekService, MonthService, AgendaService]
