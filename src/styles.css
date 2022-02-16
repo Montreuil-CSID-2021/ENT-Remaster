@@ -169,3 +169,33 @@ body {
 .e-quick-popup-wrapper .e-event-popup .e-popup-header .e-header-icon-wrapper .e-edit {
   display: none;
 }
+
+/* Home screen */
+
+label{
+  float: left;
+}
+
+input{
+  margin-left: 15px;
+  border: lightgrey 2px solid;
+  float: right;
+  width: 50%;
+}
+
+.connexionDiv{
+  margin: 25px;
+  width: 300px;
+  padding: 5px;
+  align-content: center;
+}
+
+form{
+  border-radius: 16px;
+  background-color: #125699;
+}
+
+#button{
+  margin-left: 38%;
+}
+

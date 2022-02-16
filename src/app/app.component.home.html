@@ -12,6 +12,18 @@
 
 <!-- Content -->
 <div class="content" role="main">
-  <a routerLink="/edt">
-  <button (click)="onClick()">Click me</button></a>
+  <form>
+    <div class="connexionDiv">
+      <label>Pseudo : </label>
+      <input type="text">
+    </div>
+    <div class="connexionDiv">
+      <label>Mot de passe :</label>
+      <input type="password">
+    </div>
+    <div id="button">
+        <button (click)="onClick()">Connexion</button>
+    </div>
+  </form>
+
 </div>
