@@ -169,3 +169,11 @@ body {
 .e-quick-popup-wrapper .e-event-popup .e-popup-header .e-header-icon-wrapper .e-edit {
   display: none;
 }
+
+.e-schedule .e-vertical-view .e-selected-cell,
+.e-schedule .e-vertical-view .e-work-cells,
+.e-schedule .e-vertical-view .e-work-cells:hover,
+.e-schedule .e-vertical-view .e-work-hours,
+.e-schedule .e-vertical-view .e-work-hours:hover {
+	background-color: #fafafa;
+}
