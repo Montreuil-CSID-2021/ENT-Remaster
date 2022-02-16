@@ -12,18 +12,19 @@
 
 <!-- Content -->
 <div class="content" role="main">
-  <form>
-    <div class="connexionDiv">
-      <label>Pseudo : </label>
-      <input type="text">
-    </div>
-    <div class="connexionDiv">
-      <label>Mot de passe :</label>
-      <input type="password">
-    </div>
-    <div id="button">
-        <button (click)="onClick()">Connexion</button>
-    </div>
-  </form>
-
+  <div class="connexionDiv">
+    <form>
+      <div class="inputDiv">
+        <label><span class="mdi mdi-account"></span> Nom d'utilisateur</label>
+        <input type="text" name="username" placeholder="Entrez le nom d'utilisateur">
+      </div>
+      <div class="inputDiv">
+        <label><span class="mdi mdi-lock"></span> Mot de passe</label>
+        <input type="password" name="password" placeholder="Entrez le mot de passe">
+      </div>
+      <div class="buttonDiv">
+        <button (click)="onClick()"><span>Connexion</span></button>
+      </div>
+    </form>
+  </div>
 </div>

@@ -172,30 +172,77 @@ body {
 
 /* Home screen */
 
-label{
-  float: left;
-}
-
-input{
-  margin-left: 15px;
-  border: lightgrey 2px solid;
-  float: right;
-  width: 50%;
-}
-
-.connexionDiv{
-  margin: 25px;
-  width: 300px;
-  padding: 5px;
-  align-content: center;
-}
-
-form{
-  border-radius: 16px;
+.connexionDiv {
+  position: relative;
+  width: 30%;
+  height: 400px;
   background-color: #125699;
+  border-radius: 16px;
+  padding: 0 5%;
+  /* margin: 0;
+  top: 50%;
+  transform: translateY(-50%); */
 }
 
-#button{
-  margin-left: 38%;
+.connexionDiv form {
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
+.inputDiv {
+  padding: 5%;
+  color: #fafafa;
+}
+
+.inputDiv input {
+  width: 100%;
+  height: 30px;
+  margin-top: 5px;
+  border: lightgrey 2px solid;
+  border-radius: 4px;
+}
+
+.buttonDiv {
+  text-align: center;
+}
+
+.buttonDiv button {
+  border-radius: 8px;
+  background-color: #81a4cd;
+  border: none;
+  color: #fafafa;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 70%;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-top: 50px;
+}
+
+.buttonDiv button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buttonDiv button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.buttonDiv button:hover span {
+  padding-right: 25px;
+}
+
+.buttonDiv button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
