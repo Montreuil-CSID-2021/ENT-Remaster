@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 
 export class AppComponentHome implements OnInit {
   credentials = {username: '', password: ''}
+  selectedEdt = "Par défaut"
 
   title = 'Emploi du temps';
 
@@ -23,7 +24,7 @@ export class AppComponentHome implements OnInit {
   }
 
   login() {
-    this.edtApi.login(this.credentials).then(async success => {
+    this.edtApi.login( {selectedEdt: this.selectedEdt, credentials: this.credentials}).then(async success => {
       if(success) await this._routeur.navigateByUrl("/edt")
     })
   }

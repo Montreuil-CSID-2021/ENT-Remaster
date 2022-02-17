@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
   private edtApi: EDTApi
   constructor(private _httpClient: HttpClient) {
     this.edtApi = EDTApi.getEdtApi()
+    this.username = this.edtApi.username
   }
 
   public fistDayOfWeek: number = 1
@@ -36,7 +37,9 @@ export class AppComponent implements OnInit {
     allowDeleting: false,
   }
 
-  title = 'Emploi du temps';
+  title = 'Emploi du temps'
+  selectedEdt = ""
+  username = ""
 
   applyCategoryColor(args: EventRenderedArgs): void {
     let categoryColor: string = args.data['color'] as string;
@@ -62,6 +65,7 @@ export class AppComponent implements OnInit {
   }
 
   updateEvents() {
+    this.selectedEdt = this.edtApi.selectedEdt
     this.scheduleObj.eventSettings.dataSource = this.edtApi.days.map(e => {
       let color = "#e5e5e5"
       let potentialColor = this.matColor.find(mc => mc.mat === e.mat.toLowerCase())

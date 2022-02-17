@@ -54,14 +54,9 @@ p {
 
 .content {
   display: flex;
-  margin: 82px auto 32px;
-  padding: 0 16px;
-  max-width: 960px;
-  flex-direction: column;
-  align-items: center;
 }
 
-.schedule-container {
+.content, .schedule-container {
   margin-top: 60px;
   height: calc(100vh - 60px);
 }
@@ -78,7 +73,7 @@ a:hover {
 }
 
 body {
-  background-color: #DCE4F4;
+  background-color: #F4FCFC;
   padding: 0;
   margin: 0;
   font-family: Roboto, Arial, sans-serif;
@@ -171,65 +166,58 @@ body {
 }
 
 /* Home screen */
-
-.connexionDiv {
-  position: relative;
-  width: 30%;
-  height: 400px;
-  background-color: #125699;
+#connexion {
+  min-height: 50%;
+  background-color: #247CA9;
   border-radius: 16px;
-  padding: 0 5%;
-  /* margin: 0;
-  top: 50%;
-  transform: translateY(-50%); */
+  padding: 0 50px;
+  margin: auto;
+  color: #F4FCFC;
+
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+  0 10px 10px rgba(0,0,0,0.22);
 }
 
-.connexionDiv form {
-  position: absolute;
-  margin: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.inputDiv {
-  padding: 5%;
-  color: #fafafa;
-}
-
-.inputDiv input {
+#connexion .inputDiv select, #connexion .inputDiv input {
   width: 100%;
-  height: 30px;
+  height: 35px;
   margin-top: 5px;
   border: lightgrey 2px solid;
-  border-radius: 4px;
+  border-radius: 7px;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-.buttonDiv {
+#loginButtonDiv {
   text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
-.buttonDiv button {
-  border-radius: 8px;
-  background-color: #81a4cd;
+#loginButtonDiv button {
+  border-radius: 10px;
+  background-color: #F4FCFC;
   border: none;
-  color: #fafafa;
+  color: #04242C;
   text-align: center;
   font-size: 20px;
   padding: 10px;
   width: 70%;
   transition: all 0.5s;
   cursor: pointer;
-  margin-top: 50px;
+  border: 0;
 }
 
-.buttonDiv button span {
+#loginButtonDiv button span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
 
-.buttonDiv button span:after {
+#loginButtonDiv button span:after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -238,11 +226,11 @@ body {
   transition: 0.5s;
 }
 
-.buttonDiv button:hover span {
+#loginButtonDiv button:hover span {
   padding-right: 25px;
 }
 
-.buttonDiv button:hover span:after {
+#loginButtonDiv button:hover span:after {
   opacity: 1;
   right: 0;
 }
