@@ -7,15 +7,20 @@ import {
   EventSettingsModel,
   MonthService,
   ScheduleComponent,
-  WeekService
+  WeekService,
+  ExcelExportService,
+  ActionEventArgs,
+  ToolbarActionArgs, ExportOptions, ExportFieldInfo
 } from "@syncfusion/ej2-angular-schedule";
 import {EDTApi} from "../EDTApi";
+import { ItemModel } from '@syncfusion/ej2-angular-navigations';
+
 
 @Component({
   selector: 'app-edt',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [DayService, WeekService, MonthService, AgendaService]
+  providers: [DayService, WeekService, MonthService, AgendaService, ExcelExportService]
 })
 
 export class AppComponent implements OnInit {
@@ -95,5 +100,26 @@ export class AppComponent implements OnInit {
         color: color
       }
     })
+  }
+  public onActionBegin(args: ActionEventArgs & ToolbarActionArgs): void {
+    if (args.requestType === 'toolbarItemRendering') {
+      const exportItem: ItemModel = {
+        text: 'Exporter en Excel', cssClass: 'e-excel-export', click: this.onExportClick.bind(this)
+      };
+      // @ts-ignore
+      args.items.push(exportItem);
+    }
+  }
+
+  public onExportClick(): void {
+    const customFields: ExportFieldInfo[] = [
+      { name: 'Subject', text: 'Cours' },
+      { name: 'StartTime', text: 'Début' },
+      { name: 'EndTime', text: 'Fin' },
+      { name: 'Location', text: 'Salle' },
+      { name: 'Teacher', text: 'Prof' }
+    ];
+    const exportValues: ExportOptions = { fieldsInfo: customFields , fileName: "Emploi du temps CSID"};
+    this.scheduleObj.exportToExcel(exportValues);
   }
 }
