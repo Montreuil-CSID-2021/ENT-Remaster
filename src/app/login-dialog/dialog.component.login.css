@@ -82,3 +82,8 @@
   opacity: 1;
   right: 0;
 }
+
+#loginError {
+  color: red;
+  text-align: center;
+}

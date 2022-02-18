@@ -11,16 +11,22 @@ export class DialogComponentLogin {
   credentials = {username: '', password: ''}
 
   private edtApi: EDTApi
+  loading = false
+  error = false
 
-  constructor(private _routeur: Router, private dialogRef:MatDialogRef<DialogComponentLogin>) {
+  constructor(private _routeur: Router, private dialogRef: MatDialogRef<DialogComponentLogin>) {
     this.edtApi = EDTApi.getEdtApi()
   }
 
   login() {
-    this.edtApi.login(this.credentials).then(async success => {
-      if(success) {
-        this.dialogRef.close()
-      }
-    })
+    this.loading = true
+    this.error = false
+    this.edtApi.login(this.credentials)
+      .then(async success => {
+        this.loading = false
+        if (success) {
+          this.dialogRef.close()
+        } else this.error = true
+      })
   }
 }
