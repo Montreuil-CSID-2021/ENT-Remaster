@@ -1,4 +1,6 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
+import {MatDialog} from "@angular/material/dialog";
+import {DialogComponentLogin} from "../login-dialog/dialog.component.login";
 
 @Component({
   selector: 'app-nav',
@@ -6,8 +8,14 @@ import {Component} from "@angular/core";
   styleUrls: ['./app.component.navbar.css'],
 })
 
-export class AppComponentNavbar{
+export class AppComponentNavbar implements OnInit {
 
   title = 'Emploi du temps CSID';
 
+  constructor(private dialog: MatDialog) {
+  }
+
+  ngOnInit(): void {
+    this.dialog.open(DialogComponentLogin)
+  }
 }

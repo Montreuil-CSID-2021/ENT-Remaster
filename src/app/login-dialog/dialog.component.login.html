@@ -1,0 +1,20 @@
+<div id="connexion">
+  <h1 style="text-align: center; height: min-content; margin: auto">Connexion</h1>
+
+  <div id="inputLoginDiv">
+    <div class="inputDiv">
+      <label><span class="mdi mdi-account"></span> Nom d'utilisateur</label>
+      <input type="text" [(ngModel)]="credentials.username" name="username"
+             placeholder="Entrez le nom d'utilisateur">
+    </div>
+    <div class="inputDiv">
+      <label><span class="mdi mdi-lock"></span> Mot de passe</label>
+      <input type="password" [(ngModel)]="credentials.password" name="password"
+             placeholder="Entrez le mot de passe">
+    </div>
+  </div>
+
+  <div id="loginButtonDiv">
+    <button><span>Connexion</span></button>
+  </div>
+</div>
