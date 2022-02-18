@@ -32,7 +32,6 @@ export class AppComponent implements OnInit {
   private edtApi: EDTApi
   constructor(private _httpClient: HttpClient) {
     this.edtApi = EDTApi.getEdtApi()
-    this.username = this.edtApi.username
   }
 
   public fistDayOfWeek: number = 1
@@ -44,7 +43,6 @@ export class AppComponent implements OnInit {
 
   title = 'Emploi du temps'
   selectedEdt = ""
-  username = ""
 
   applyCategoryColor(args: EventRenderedArgs): void {
     let categoryColor: string = args.data['color'] as string;
@@ -60,9 +58,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      console.log("Initialisation")
       this.updateEvents()
-      this.edtApi.socket.on('updateEdt', () => {
+      this.edtApi.eventEmitter.on('update', () => {
         this.updateEvents()
       })
     }, 1000)
@@ -70,37 +67,40 @@ export class AppComponent implements OnInit {
   }
 
   updateEvents() {
-    this.selectedEdt = this.edtApi.selectedEdt
-    this.scheduleObj.eventSettings.dataSource = this.edtApi.days.map(e => {
-      let color = "#e5e5e5"
-      let potentialColor = this.matColor.find(mc => mc.mat === e.mat.toLowerCase())
+    if(this.edtApi.user) {
+      this.selectedEdt = this.edtApi.user.edt.name
+      this.scheduleObj.eventSettings.dataSource = this.edtApi.user.edt.days.map(e => {
+        let color = "#e5e5e5"
+        let potentialColor = this.matColor.find(mc => mc.mat === e.mat.toLowerCase())
 
-      if(potentialColor) {
-        color = potentialColor.color
-      } else {
-        let matColorSize = this.matColor.length
-        if(matColorSize < this.colors.length) {
-          color = this.colors[matColorSize]
-          this.matColor.push({
-            mat: e.mat.toLowerCase(),
-            color: color
-          })
+        if(potentialColor) {
+          color = potentialColor.color
+        } else {
+          let matColorSize = this.matColor.length
+          if(matColorSize < this.colors.length) {
+            color = this.colors[matColorSize]
+            this.matColor.push({
+              mat: e.mat.toLowerCase(),
+              color: color
+            })
+          }
         }
-      }
 
-      let startDate = new Date(e.debut * 1000)
-      let endDate = new Date(e.fin * 1000)
-      return {
-        Subject: e.mat,
-        StartTime: startDate,
-        EndTime: endDate,
-        DuringTime: new Date(endDate.getTime() - startDate.getTime() - 3600000),
-        Location: e.salle,
-        Teacher: e.prof,
-        color: color
-      }
-    })
+        let startDate = new Date(e.debut * 1000)
+        let endDate = new Date(e.fin * 1000)
+        return {
+          Subject: e.mat,
+          StartTime: startDate,
+          EndTime: endDate,
+          DuringTime: new Date(endDate.getTime() - startDate.getTime() - 3600000),
+          Location: e.salle,
+          Teacher: e.prof,
+          color: color
+        }
+      })
+    }
   }
+
   public onActionBegin(args: ActionEventArgs & ToolbarActionArgs): void {
     if (args.requestType === 'toolbarItemRendering') {
       const exportItem: ItemModel = {

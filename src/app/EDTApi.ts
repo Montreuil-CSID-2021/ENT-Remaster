@@ -1,4 +1,5 @@
 import { io } from "socket.io-client";
+import * as Events from "events";
 
 export interface EDTDay {
   mat: string,
@@ -10,22 +11,28 @@ export interface EDTDay {
   finText: string
 }
 
+export interface EdtUser {
+  username: string,
+  edt: {
+    name: string,
+    days: Array<EDTDay>
+  }
+}
+
 export class EDTApi {
-
   private static edtApi: EDTApi
-  socket
-
-  days: any[] = []
-  selectedEdt = ""
-  username = ""
+  private socket
+  eventEmitter = new Events.EventEmitter()
+  user: EdtUser | undefined = undefined
 
   constructor() {
     EDTApi.edtApi = this
     this.socket = io('http://localhost:8081')
-    this.socket.on('updateEdt', (data:{selectedEdt: string, days: Array<{map: string, salle: string, prof: string, debut: bigint, fin: bigint}>}) => {
-      console.log(data)
-      this.days = data.days
-      this.selectedEdt = data.selectedEdt
+    this.socket.on('update', (data: Array<EDTDay>) => {
+      if(this.user) {
+        this.user.edt.days = data
+        this.eventEmitter.emit('update')
+      }
     })
   }
 
@@ -35,13 +42,15 @@ export class EDTApi {
     return EDTApi.edtApi
   }
 
-  async login(data: {selectedEdt: string, credentials: {username: string, password: string}}) {
+  async login(credentials: {username: string, password: string}) {
     return new Promise(resolve => {
-      this.socket.once('login', success => {
-        this.username = data.credentials.username
-        if(success) resolve(success);
+      this.socket.once('login', (user: EdtUser | null) => {
+        if(user) {
+          this.user = user
+          resolve(true);
+        } else resolve(false)
       })
-      this.socket.emit('login', data)
+      this.socket.emit('login', credentials)
     })
   }
 }

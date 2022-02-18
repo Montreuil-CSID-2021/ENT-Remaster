@@ -24,7 +24,7 @@ export class AppComponentHome implements OnInit {
   }
 
   login() {
-    this.edtApi.login( {selectedEdt: this.selectedEdt, credentials: this.credentials}).then(async success => {
+    this.edtApi.login(this.credentials).then(async success => {
       if(success) await this._routeur.navigateByUrl("/edt")
     })
   }
