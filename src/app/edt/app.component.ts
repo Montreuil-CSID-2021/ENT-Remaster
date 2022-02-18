@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
 
   title = 'Emploi du temps'
   selectedEdt = ""
+  showHeaderBar = true
 
   applyCategoryColor(args: EventRenderedArgs): void {
     let categoryColor: string = args.data['color'] as string;
@@ -121,5 +122,11 @@ export class AppComponent implements OnInit {
     ];
     const exportValues: ExportOptions = { fieldsInfo: customFields , fileName: "Emploi du temps CSID"};
     this.scheduleObj.exportToExcel(exportValues);
+  }
+
+  public printPdf() {
+    window.document.body.classList.add('printmode')
+    window.print()
+    window.document.body.classList.remove('printmode')
   }
 }

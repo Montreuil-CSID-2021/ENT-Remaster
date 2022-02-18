@@ -1,4 +1,9 @@
 <!-- Content -->
+<div class="fab" (click)="printPdf()" id="printEdtToPDFButton">
+  <span class="fab-pdf-button">
+      <i class="fab-pdf-button__icon"></i>
+  </span>
+</div>
 <div class="schedule-container" role="main">
   <ejs-schedule
     id="schedule" #scheduleObj
@@ -8,6 +13,7 @@
     timeFormat="HH:mm"
     dateFormat="dd MMMM yyyy"
     [firstDayOfWeek]=fistDayOfWeek
+    [showHeaderBar]="showHeaderBar"
     width="100vw"
     height="100%"
     [showWeekend]=false

@@ -173,3 +173,18 @@ body {
 .e-schedule .e-vertical-view .e-work-hours:hover {
   background-color: #fafafa;
 }
+
+/* Print mode */
+.printmode .toolbar, .printmode .e-previous-timeline, .printmode .e-current-timeline, .printmode .e-next, .printmode .e-prev, .printmode .e-excel-export, .printmode .e-toolbar-right, .printmode #printEdtToPDFButton {
+  display: none !important;
+}
+
+.printmode .e-current-date > div {
+  background: none !important;
+  color: black !important;
+}
+
+.printmode .schedule-container {
+  height: 100vh;
+  margin: 0;
+}
