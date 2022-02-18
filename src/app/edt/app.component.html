@@ -13,7 +13,8 @@
     [showWeekend]=false
     currentView="Week"
     cssClass='schedule-event-template'
-    (eventRendered)="applyCategoryColor($event)">
+    (eventRendered)="applyCategoryColor($event)"
+    (actionBegin)="onActionBegin($event)">
     <e-views>
       <e-view option="Day"></e-view>
       <e-view option="Week"></e-view>
