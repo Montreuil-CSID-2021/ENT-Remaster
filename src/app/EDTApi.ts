@@ -46,11 +46,18 @@ export class EDTApi {
     return new Promise(resolve => {
       this.socket.once('login', (user: EdtUser | null) => {
         if(user) {
+          console.log(user)
           this.user = user
           resolve(true);
+          this.eventEmitter.emit('update')
         } else resolve(false)
       })
       this.socket.emit('login', credentials)
     })
+  }
+
+  logout() {
+    this.user = undefined
+    this.eventEmitter.emit('update')
   }
 }
