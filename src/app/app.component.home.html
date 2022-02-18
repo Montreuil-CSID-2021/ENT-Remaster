@@ -1,17 +1,84 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <img
-    width="40"
-    alt="Angular Logo"
-    src="https://www.iut.univ-paris8.fr/sites/default/files/LOGO%20IUT%20MONTREUIL%20Moyen.jpg"
+    height="50"
+    alt="IUT Logo"
+    src="https://www.iut.univ-paris8.fr/sites/default/files/inline-images/LOGO%20IUT%20MONTREUIL%20BLANC%20Moyen.png"
   />
   <span>{{title}}</span>
-  <div class="spacer"></div>
-  <span style="margin-right: 10px">Bonjour Bob</span>
 </div>
 
 <!-- Content -->
-<div class="content" role="main">
-  <a routerLink="/edt">
-  <button (click)="onClick()">Click me</button></a>
-</div>
+<form (submit)="login()">
+  <div class="content" role="main">
+    <div id="connexion" style="display: grid;">
+      <h1 style="text-align: center; vertical-align: center; height: min-content; margin: auto">Connexion</h1>
+
+      <div style="display: grid; gap: 10px; width: max-content">
+        <div class="inputDiv">
+          <label><span class="mdi mdi-account"></span> Nom d'utilisateur</label>
+          <input type="text" [(ngModel)]="credentials.username" name="username"
+                 placeholder="Entrez le nom d'utilisateur">
+        </div>
+        <div class="inputDiv">
+          <label><span class="mdi mdi-lock"></span> Mot de passe</label>
+          <input type="password" [(ngModel)]="credentials.password" name="password"
+                 placeholder="Entrez le mot de passe">
+        </div>
+        <div class="inputDiv">
+          <label><span class="mdi mdi-calendar"> Emploi du temps</span></label>
+          <select [(ngModel)]="selectedEdt" name="selectEdt">
+            <option>Par défaut</option>
+            <option>BUT ACE S2</option>
+            <option>BUT GACO APP S2</option>
+            <option>BUT GACO S2</option>
+            <option>BUT INFOCOM S2</option>
+            <option>BUT INFO S2</option>
+            <option>BUT QLIO S1</option>
+            <option>BUT QLIO S2</option>
+            <option>DUT ACE S4</option>
+            <option>DUT ACE S4 BIS</option>
+            <option>DUT GACO APP S3</option>
+            <option>DUT GACO APP S4</option>
+            <option>DUT GACO S4</option>
+            <option>DUT INFO APP S3</option>
+            <option>DUT INFO APP S4</option>
+            <option>DUT INFOCOM APP S3</option>
+            <option>DUT INFOCOM APP S4</option>
+            <option>DUT INFOCOM S3</option>
+            <option>DUT INFOCOM S4</option>
+            <option>DUT INFO S2</option>
+            <option>DUT INFO S3</option>
+            <option>DUT INFO S4</option>
+            <option>DUT QLIO APP S3</option>
+            <option>DUT QLIO APP S4</option>
+            <option>DUT QLIO S3</option>
+            <option>DUT QLIO S4</option>
+            <option>ERASMUS</option>
+            <option>LP CAPE MOIRANS</option>
+            <option>LP CAPE MOIRANS NEW</option>
+            <option>LP CAPE S5 MONTREUIL</option>
+            <option>LP CAPE S6 MONTREUIL 2019-2020</option>
+            <option>LP CAPE S6 MONTREUIL NEW</option>
+            <option>LP CD</option>
+            <option>LP CIM</option>
+            <option>LP CSID</option>
+            <option>LP ECMN GUADELOUPE</option>
+            <option>LP ecommerce</option>
+            <option>QLIO Halle Technologique</option>
+            <option>RESERVATION FCA</option>
+            <option>RESERVATION GACO</option>
+            <option>RESERVATION QLIO</option>
+            <option>RESERVATIONS</option>
+            <option>SPECIAL-ESCE</option>
+            <option>SPECIAL-ISC</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="loginButtonDiv">
+        <button type="submit"><span>Connexion</span></button>
+      </div>
+    </div>
+  </div>
+</form>

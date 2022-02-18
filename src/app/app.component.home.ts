@@ -1,4 +1,6 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
+import {EDTApi} from "./edt/EDTApi";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -6,11 +8,29 @@ import {Component} from "@angular/core";
   styleUrls: ['./app.component.css'],
 })
 
-export class AppComponentHome {
+export class AppComponentHome implements OnInit {
+  credentials = {username: '', password: ''}
+  selectedEdt = "Par défaut"
 
-  title = 'Emploi du temps CSID';
+  title = 'Emploi du temps';
+
+  private edtApi = EDTApi.getEdtApi()
+
+  constructor(private _routeur: Router) {
+  }
 
   onClick() {
 
+  }
+
+  login() {
+    this.edtApi.login( {selectedEdt: this.selectedEdt, credentials: this.credentials}).then(async success => {
+      if(success) await this._routeur.navigateByUrl("/edt")
+    })
+  }
+
+  ngOnInit(): void {
+
+    console.log('blop')
   }
 }
