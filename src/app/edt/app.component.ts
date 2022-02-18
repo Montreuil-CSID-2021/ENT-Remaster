@@ -9,7 +9,7 @@ import {
   ScheduleComponent,
   WeekService
 } from "@syncfusion/ej2-angular-schedule";
-import {EDTApi} from "./edt/EDTApi";
+import {EDTApi} from "../EDTApi";
 
 @Component({
   selector: 'app-edt',

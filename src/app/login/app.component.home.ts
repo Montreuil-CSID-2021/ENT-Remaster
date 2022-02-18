@@ -1,11 +1,11 @@
 import {Component, OnInit} from "@angular/core";
-import {EDTApi} from "./edt/EDTApi";
+import {EDTApi} from "../EDTApi";
 import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
   templateUrl: './app.component.home.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.login.css'],
 })
 
 export class AppComponentHome implements OnInit {
