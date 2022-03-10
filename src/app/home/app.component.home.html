@@ -1,7 +1,6 @@
 <!-- Content -->
-<div class="content" role="main">
-  <div style="display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: min-content 1fr; width: 100%; gap: 20px; padding: 10px">
-    <div *ngIf="logged" style="grid-column-start: 1; grid-column-end: 3;">
+<div class="content" role="main" style="display: grid; grid-template-columns: 1fr 350px; grid-template-rows: min-content 1fr; width: 100%; gap: 20px;">
+    <div *ngIf="logged">
       <h3>Prochain cours</h3>
       <div style="display: grid; grid-template-rows: 1fr; grid-auto-columns: 1fr; width: 100%; gap: 10px; box-sizing: border-box">
         <div *ngFor="let data of cours" class="home-cours" style="grid-row: 1; background-color: {{data.color}}">
@@ -21,8 +20,7 @@
     <div>
       Contenu
     </div>
-    <div>
-      Tweet
+    <div style="grid-column-start: 2; grid-row-start: 1; grid-row-end: 3" id="homeTwitterContainer">
+      <ng-twitter-timeline [dataSrc]="{sourceType: 'list', ownerScreenName: 'DarkVinc', slug: '1501916075130245124'}" [opts]="{tweetLimit: 5}"></ng-twitter-timeline>
     </div>
-  </div>
 </div>

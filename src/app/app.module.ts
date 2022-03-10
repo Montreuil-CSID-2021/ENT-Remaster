@@ -12,6 +12,7 @@ import {AppComponentNavbar} from "./navbar/app.component.navbar";
 import {MatDialogModule} from "@angular/material/dialog";
 import {DialogComponentLogin} from "./login-dialog/dialog.component.login";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { NgTwitterTimelineModule } from 'ng-twitter-timeline';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgTwitterTimelineModule
   ],
   providers: [],
   bootstrap: [AppComponentRouter]

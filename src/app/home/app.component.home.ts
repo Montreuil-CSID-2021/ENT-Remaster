@@ -72,7 +72,7 @@ export class AppComponentHome implements OnInit {
         .sort((a, b) => a.debut.getTime() - b.debut.getTime())
         .filter(e => e.debut > new Date())
       this.cours = []
-      for(let i = 0; i < cours.length && i <= 5; i++) {
+      for(let i = 0; i < cours.length && i < 4; i++) {
         this.cours.push(cours[i])
       }
     } else {
