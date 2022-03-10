@@ -9,6 +9,8 @@
   />
   <span>{{title}}{{edtName}}</span>
   <span class="spacer"></span>
+  <a target="_blank" href="https://moodle.iut.univ-paris8.fr">Moodle</a>
+  <a target="_blank" href="https://fayrouz.iut.univ-paris8.fr/SOGo/">Messagerie</a>
   <a *ngIf="userConnected" (click)="goToEnt()">Emploi du temps</a>
   <a *ngIf="!userConnected" (click)="login()">Connexion</a>
   <a *ngIf="userConnected" (click)="logout()">Déconnexion</a>

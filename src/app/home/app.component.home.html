@@ -1,13 +1,41 @@
 <!-- Content -->
-<div class="content" role="main" style="display: grid; grid-template-columns: 1fr 350px; grid-template-rows: min-content 1fr; width: 100%; gap: 20px;">
-    <div *ngIf="logged">
-      <h3>Prochain cours</h3>
-      <div style="display: grid; grid-template-rows: 1fr; grid-auto-columns: 1fr; width: 100%; gap: 10px; box-sizing: border-box">
+<div class="content" role="main">
+  <div id="homeContentContainer">
+    <h1>Bienvenue sur l'ENT 2.0 de l'IUT de Montreuil !</h1>
+    <div>
+      <h3>Présentation</h3>
+      <p>L’Institut Universitaire de Technologie de Montreuil a été créé en 1998. À l’instar des autres IUT en France,
+        l’IUT de Montreuil propose des formations généralistes à vocation professionnelle. Il est composé aujourd’hui de
+        quatre départements proposant quatre BUT (bac+3) et cinq licences professionnelles (bac+3) dans les domaines de
+        l’informatique, de la gestion administrative et commerciale, de l’information-communication et de la qualité et
+        la logistique industrielle.</p>
+      <br>
+      <p>L’enseignement à l’IUT est assuré par des enseignants chercheurs, des enseignants du secondaire et des
+        professionnels. Il est dispensé en formation initiale à temps plein, en alternance ou en formation continue.</p>
+    </div>
+    <div>
+      <h3>Liens pratiques</h3>
+      <ul>
+        <li>ENT du jurassique (si vraiment vous aimez vous faire du mal 🦕) : <a href="https://ent.iut.univ-paris8.fr">ent.iut.univ-paris8.fr</a></li>
+        <li>L'IUT Montreuil (C'est nous! Enfin je crois 🤔) : <a href="https://iut.univ-paris8.fr">iut.univ-paris8.fr</a></li>
+        <li>L'université Paris 8 (Ce qui n'on surement pas connaissance de notre existence 😬) : <a href="https://univ-paris8.fr">univ-paris8.fr</a></li>
+        <li>Le CROUS (disponible de 15h06 à 15h24 tous les deuxièmes mardis de janvier 😴) : <a href="https://crous-paris.fr">crous-paris.fr</a></li>
+      </ul>
+    </div>
+    <div *ngIf="logged" id="nextClasses">
+      <h3>Vos prochains cours</h3>
+      <div
+        style="display: grid; grid-template-rows: 1fr; grid-auto-columns: 1fr; width: 100%; gap: 10px; box-sizing: border-box">
         <div *ngFor="let data of cours" class="home-cours" style="grid-row: 1; background-color: {{data.color}}">
           <h4 class="subject">{{data.mat}}</h4>
           <div><span class="mdi mdi-map-marker"></span> {{data.salle}}</div>
           <div><span class="mdi mdi-account"></span> {{data.prof}}</div>
-          <div><span class="mdi mdi-calendar">{{data.debut.toLocaleDateString('fr-FR', {weekday: "long", day: "numeric", month:"long", year: "numeric"})}}</span></div>
+          <div><span class="mdi mdi-calendar">{{data.debut.toLocaleDateString('fr-FR', {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+          })}}</span></div>
           <div>
             <span class="mdi mdi-clock"></span>
             {{data.debut.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}}
@@ -17,10 +45,9 @@
         </div>
       </div>
     </div>
-    <div>
-      Contenu
-    </div>
-    <div style="grid-column-start: 2; grid-row-start: 1; grid-row-end: 3" id="homeTwitterContainer">
-      <ng-twitter-timeline [dataSrc]="{sourceType: 'list', ownerScreenName: 'DarkVinc', slug: '1501916075130245124'}" [opts]="{tweetLimit: 5}"></ng-twitter-timeline>
-    </div>
+  </div>
+  <div style="grid-column-start: 2; grid-row-start: 1; grid-row-end: 3" id="homeTwitterContainer">
+    <ng-twitter-timeline [dataSrc]="{sourceType: 'list', ownerScreenName: 'DarkVinc', slug: '1501916075130245124'}"
+                         [opts]="{tweetLimit: 50}"></ng-twitter-timeline>
+  </div>
 </div>

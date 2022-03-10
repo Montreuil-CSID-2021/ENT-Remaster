@@ -1,4 +1,12 @@
 /* Home screen */
+.content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
+  background-color: #F4FCFC;
+  gap: 20px;
+}
+
 .home-cours {
   padding: 5px 10px;
   border-radius: 5px;
@@ -9,6 +17,17 @@
   margin: 0 0 5px;
 }
 
+#homeContentContainer {
+  padding: 10px;
+  display: grid;
+  gap: 10px;
+  grid-auto-rows: min-content;
+}
+
 #homeTwitterContainer {
   overflow: auto;
+}
+
+p {
+  text-align: justify;
 }

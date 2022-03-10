@@ -1,6 +1,7 @@
 .toolbar a {
   color: white;
   margin-right: 10px;
+  text-decoration: none;
 }
 
 .toolbar a:hover {

@@ -63,17 +63,6 @@ p {
   overflow: hidden;
 }
 
-a,
-a:visited,
-a:hover {
-  color: #1976d2;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #125699;
-}
-
 body {
   background-color: #F4FCFC;
   padding: 0;
