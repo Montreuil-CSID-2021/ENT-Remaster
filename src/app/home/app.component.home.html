@@ -1,0 +1,28 @@
+<!-- Content -->
+<div class="content" role="main">
+  <div style="display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: min-content 1fr; width: 100%; gap: 20px">
+    <div style="grid-column-start: 1; grid-column-end: 3;">
+      <h3>Prochain cours</h3>
+      <div style="display: grid; grid-template-rows: 1fr; grid-auto-columns: 1fr; width: 100%; gap: 10px; padding: 10px; box-sizing: border-box">
+        <div *ngFor="let data of cours" class="home-cours" style="grid-row: 1; background-color: {{data.color}}">
+          <h5 class="subject">{{data.mat}}</h5>
+          <div><span class="mdi mdi-map-marker"></span> {{data.salle}}</div>
+          <div><span class="mdi mdi-account"></span> {{data.prof}}</div>
+          <div><span class="mdi mdi-calendar">{{data.debut.toLocaleDateString('fr-FR', {weekday: "long", day: "numeric", month:"long", year: "numeric"})}}</span></div>
+          <div>
+            <span class="mdi mdi-clock"></span>
+            {{data.debut.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}}
+            - {{data.fin.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}}
+            ({{data.dateDuring.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}})
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      Contenu
+    </div>
+    <div>
+      Tweet
+    </div>
+  </div>
+</div>

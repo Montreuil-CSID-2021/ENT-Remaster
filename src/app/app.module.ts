@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { AppComponent } from './edt/app.component';
-import {AppComponentHome} from "./login/app.component.home";
+import {AppComponentHome} from "./home/app.component.home";
 import { AppRoutingModule } from './app-routing.module';
 import {AppComponentRouter} from "./router/app.component.router";
 import { FormsModule } from '@angular/forms';
