@@ -22,12 +22,14 @@ export class AppComponentHome implements OnInit {
   private colors = ["#fceeac", "#c9fcac", "#c3fad5", "#bafaee", "#c7f6fc", "#e9edfe", "#e6eefe", "#fee7fc", "#fee9e6", "#feecc2", "#fcbfbf", "#bccdff", "#b8fec9", "#bfccfb", "#eac7b2", "#fcc0b0"]
   private matColor: Array<{mat: string, color: string}> = []
   private edtApi = EDTApi.getEdtApi()
-  public cours: homeCours[] = [];
+  public cours: homeCours[] = []
+  public logged = false
 
   constructor(private _routeur: Router) {
   }
 
   ngOnInit(): void {
+    this.updateCours()
     this.edtApi.eventEmitter.on('update', () => {
       this.updateCours()
     })
@@ -35,6 +37,7 @@ export class AppComponentHome implements OnInit {
 
   updateCours(): void {
     if(this.edtApi.user) {
+      this.logged = true
       let cours = this.edtApi.user.edt.days
         .map((day): homeCours => {
           let color = "#e5e5e5"
@@ -72,6 +75,9 @@ export class AppComponentHome implements OnInit {
       for(let i = 0; i < cours.length && i <= 5; i++) {
         this.cours.push(cours[i])
       }
-    } else this.cours = []
+    } else {
+      this.logged = false
+      this.cours = []
+    }
   }
 }

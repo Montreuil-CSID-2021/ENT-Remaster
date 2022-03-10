@@ -1,6 +1,10 @@
 /* Home screen */
 .home-cours {
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 5px;
   border: lightgray 1px solid;
+}
+
+.home-cours h4 {
+  margin: 0 0 5px;
 }
