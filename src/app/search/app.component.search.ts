@@ -23,9 +23,11 @@ export interface searchCours {
 export class AppComponentSearch implements OnInit {
   private edtApi: EDTApi
   searchInput = ""
+  onlyFutur = true
 
   public cours: searchCours[] = []
   public logged = false
+  public nbCours = 0
 
   constructor(private _httpClient: HttpClient) {
     this.edtApi = EDTApi.getEdtApi()
@@ -42,6 +44,7 @@ export class AppComponentSearch implements OnInit {
     let now = new Date()
     if (this.edtApi.user) {
       this.logged = true
+      this.nbCours = this.edtApi.user.edt.days.length
       this.cours = this.edtApi.user.edt.days
         .map((day): searchCours => {
           let startDate = new Date(day.debut * 1000)
@@ -74,7 +77,7 @@ export class AppComponentSearch implements OnInit {
         .filter(e => {
           let valide = true
 
-          if (e.fin <= now) valide = true
+          if (e.fin <= now && this.onlyFutur) valide = false
           else {
             this.searchInput.split(' ').forEach(el => {
               if(!valide) return
@@ -86,6 +89,7 @@ export class AppComponentSearch implements OnInit {
         })
     } else {
       this.logged = false
+      this.nbCours = 0
       this.cours = []
     }
   }

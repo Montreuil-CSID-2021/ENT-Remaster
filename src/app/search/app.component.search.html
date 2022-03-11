@@ -2,8 +2,9 @@
 <div class="content" role="main">
   <div id="searchSettingsContainer">
     <div>
-      <h1>Rechercher des cours</h1>
+      <h1>Rechercher des cours ({{cours.length}}/{{nbCours}})</h1>
       <input id="filter-search-input" placeholder="Projet, Ange, Framework, ..." type="text" [(ngModel)]="searchInput" (input)="updateCours()">
+      <div><input type="checkbox" [(ngModel)]="onlyFutur" (change)="updateCours()"><label>Afficher uniquement les cours à venir</label></div>
     </div>
   </div>
 
