@@ -3,12 +3,18 @@
   <div id="searchSettingsContainer">
     <div>
       <h1>Rechercher des cours ({{cours.length}}/{{nbCours}})</h1>
-      <input id="filter-search-input" placeholder="Projet, Ange, Framework, ..." type="text" [(ngModel)]="searchInput" (input)="updateCours()">
+      <input id="filter-search-input" placeholder="Projet, Ange, Mars, 2022, Distanciel, A1-01, ..." type="text" [(ngModel)]="searchInput" (input)="updateCours()">
       <div><input type="checkbox" [(ngModel)]="onlyFutur" (change)="updateCours()"><label>Afficher uniquement les cours à venir</label></div>
     </div>
   </div>
 
   <div style="display: grid; grid-template-rows: min-content; grid-auto-columns: 1fr; width: 100%; gap: 10px; box-sizing: border-box; overflow-y: auto; padding: 5px">
+    <div *ngIf="!logged" class="filtreErrorMessage">
+      <h2>Vous n'êtes pas connecté</h2>
+    </div>
+    <div *ngIf="logged && cours.length === 0" class="filtreErrorMessage">
+      <h2>Aucun cours ne correspond à votre recherche</h2>
+    </div>
     <div *ngFor="let data of cours" class="home-cours" style="grid-column: 1;" [style.background-color]="data.color">
       <h4 class="subject">{{data.mat}}</h4>
       <div><span class="mdi mdi-map-marker"></span> {{data.salle}}</div>

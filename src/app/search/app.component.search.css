@@ -55,3 +55,15 @@
 .home-cours h4 {
   margin: 0 0 5px;
 }
+
+.filtreErrorMessage {
+  height: calc(100vh - 60px);
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  display: grid;
+}
+
+.filtreErrorMessage > * {
+  margin: auto;
+}
