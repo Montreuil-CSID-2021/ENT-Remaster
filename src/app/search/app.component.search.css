@@ -1,0 +1,56 @@
+.content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
+  background-color: white;
+}
+
+#searchSettingsContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  background-color: floralwhite;
+  text-align: center;
+}
+
+#searchSettingsContainer > div {
+  display: grid;
+  justify-content: center;
+  margin: auto;
+}
+
+#searchSettingsContainer input {
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
+  height: calc(1.5em + 0.75rem + 2px);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  box-sizing: border-box;
+  outline: none;
+}
+
+#searchSettingsContainer input:focus {
+  border-color: #247CA9;
+  border-width: 2px;
+}
+
+#filter-search-input {
+  width: 35vw;
+}
+
+.home-cours {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: lightgray 1px solid;
+}
+
+.home-cours.active {
+  border-color: #247CA9;
+  border-width: 2px;
+}
+
+.home-cours h4 {
+  margin: 0 0 5px;
+}

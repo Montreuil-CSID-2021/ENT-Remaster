@@ -4,6 +4,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { AppComponentEdt } from './edt/app.component.edt';
 import {AppComponentHome} from "./home/app.component.home";
+import {AppComponentSearch} from "./search/app.component.search";
 import { AppRoutingModule } from './app-routing.module';
 import {AppComponentRouter} from "./router/app.component.router";
 import { FormsModule } from '@angular/forms';
@@ -20,6 +21,7 @@ import { NgTwitterTimelineModule } from 'ng-twitter-timeline';
     AppComponentHome,
     AppComponentRouter,
     AppComponentNavbar,
+    AppComponentSearch,
     DialogComponentLogin
   ],
   imports: [

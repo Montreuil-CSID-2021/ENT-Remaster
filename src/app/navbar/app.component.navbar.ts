@@ -46,6 +46,10 @@ export class AppComponentNavbar implements OnInit {
     this._router.navigateByUrl('/home')
   }
 
+  goToSearch() {
+    this._router.navigateByUrl('/search')
+  }
+
   ngOnInit(): void {
 
   }

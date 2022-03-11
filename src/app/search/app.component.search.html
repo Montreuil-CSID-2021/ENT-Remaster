@@ -1,0 +1,29 @@
+<!-- Content -->
+<div class="content" role="main">
+  <div id="searchSettingsContainer">
+    <div>
+      <h1>Rechercher des cours</h1>
+      <input id="filter-search-input" placeholder="Projet, Ange, Framework, ..." type="text" [(ngModel)]="searchInput" (input)="updateCours()">
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-rows: min-content; grid-auto-columns: 1fr; width: 100%; gap: 10px; box-sizing: border-box; overflow-y: auto; padding: 5px">
+    <div *ngFor="let data of cours" class="home-cours" style="grid-column: 1;" [style.background-color]="data.color">
+      <h4 class="subject">{{data.mat}}</h4>
+      <div><span class="mdi mdi-map-marker"></span> {{data.salle}}</div>
+      <div><span class="mdi mdi-account"></span> {{data.prof}}</div>
+      <div><span class="mdi mdi-calendar"> {{data.debut.toLocaleDateString('fr-FR', {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      })}}</span></div>
+      <div>
+        <span class="mdi mdi-clock"></span>
+        {{data.debut.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}}
+        - {{data.fin.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}}
+        ({{data.dateDuring.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})}})
+      </div>
+    </div>
+  </div>
+</div>
