@@ -165,16 +165,18 @@ body {
 }
 
 /* Print mode */
-.printmode .toolbar, .printmode .e-previous-timeline, .printmode .e-current-timeline, .printmode .e-next, .printmode .e-prev, .printmode .e-excel-export, .printmode .e-toolbar-right, .printmode #printEdtToPDFButton {
-  display: none !important;
-}
+@media print {
+  .toolbar, .e-previous-timeline, .e-current-timeline, .e-next, .e-prev, .e-excel-export, .e-toolbar-right, #printEdtToPDFButton {
+    display: none !important;
+  }
 
-.printmode .e-current-date > div {
-  background: none !important;
-  color: black !important;
-}
+  .e-current-date > div {
+    background: none !important;
+    color: black !important;
+  }
 
-.printmode .schedule-container {
-  height: 100vh;
-  margin: 0;
+  .schedule-container {
+    height: 100vh;
+    margin: 0;
+  }
 }

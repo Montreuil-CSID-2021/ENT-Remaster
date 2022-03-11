@@ -26,9 +26,6 @@ import { ItemModel } from '@syncfusion/ej2-angular-navigations';
 export class AppComponent implements OnInit {
   @ViewChild('scheduleObj') scheduleObj!: ScheduleComponent;
 
-  private colors = ["#fceeac", "#c9fcac", "#c3fad5", "#bafaee", "#c7f6fc", "#e9edfe", "#e6eefe", "#fee7fc", "#fee9e6", "#feecc2", "#fcbfbf", "#bccdff", "#b8fec9", "#bfccfb", "#eac7b2", "#fcc0b0"]
-  private matColor: Array<{mat: string, color: string}> = []
-
   private edtApi: EDTApi
   constructor(private _httpClient: HttpClient) {
     this.edtApi = EDTApi.getEdtApi()
@@ -41,8 +38,6 @@ export class AppComponent implements OnInit {
     allowDeleting: false,
   }
 
-  title = 'Emploi du temps'
-  selectedEdt = ""
   showHeaderBar = true
 
   applyCategoryColor(args: EventRenderedArgs): void {
@@ -69,26 +64,10 @@ export class AppComponent implements OnInit {
 
   updateEvents() {
     if(this.edtApi.user) {
-      this.selectedEdt = this.edtApi.user.edt.name
       this.scheduleObj.eventSettings.dataSource = this.edtApi.user.edt.days.map(e => {
-        let color = "#e5e5e5"
-        let potentialColor = this.matColor.find(mc => mc.mat === e.mat.toLowerCase())
-
-        if(potentialColor) {
-          color = potentialColor.color
-        } else {
-          let matColorSize = this.matColor.length
-          if(matColorSize < this.colors.length) {
-            color = this.colors[matColorSize]
-            this.matColor.push({
-              mat: e.mat.toLowerCase(),
-              color: color
-            })
-          }
-        }
-
         let startDate = new Date(e.debut * 1000)
         let endDate = new Date(e.fin * 1000)
+
         return {
           Subject: e.mat,
           StartTime: startDate,
@@ -96,7 +75,7 @@ export class AppComponent implements OnInit {
           DuringTime: new Date(endDate.getTime() - startDate.getTime() - 3600000),
           Location: e.salle,
           Teacher: e.prof,
-          color: color
+          color: e.color
         }
       })
     }
@@ -125,8 +104,6 @@ export class AppComponent implements OnInit {
   }
 
   public printPdf() {
-    window.document.body.classList.add('printmode')
     window.print()
-    window.document.body.classList.remove('printmode')
   }
 }

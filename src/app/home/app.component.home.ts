@@ -9,7 +9,8 @@ export interface homeCours {
   debut: Date,
   fin: Date,
   dateDuring: Date,
-  color: string
+  color: string,
+  active: boolean
 }
 
 @Component({
@@ -19,8 +20,6 @@ export interface homeCours {
 })
 
 export class AppComponentHome implements OnInit {
-  private colors = ["#fceeac", "#c9fcac", "#c3fad5", "#bafaee", "#c7f6fc", "#e9edfe", "#e6eefe", "#fee7fc", "#fee9e6", "#feecc2", "#fcbfbf", "#bccdff", "#b8fec9", "#bfccfb", "#eac7b2", "#fcc0b0"]
-  private matColor: Array<{mat: string, color: string}> = []
   private edtApi = EDTApi.getEdtApi()
   public cours: homeCours[] = []
   public logged = false
@@ -36,26 +35,11 @@ export class AppComponentHome implements OnInit {
   }
 
   updateCours(): void {
+    let now = new Date()
     if(this.edtApi.user) {
       this.logged = true
       let cours = this.edtApi.user.edt.days
         .map((day): homeCours => {
-          let color = "#e5e5e5"
-          let potentialColor = this.matColor.find(mc => mc.mat === day.mat.toLowerCase())
-
-          if(potentialColor) {
-            color = potentialColor.color
-          } else {
-            let matColorSize = this.matColor.length
-            if(matColorSize < this.colors.length) {
-              color = this.colors[matColorSize]
-              this.matColor.push({
-                mat: day.mat.toLowerCase(),
-                color: color
-              })
-            }
-          }
-
           let startDate = new Date(day.debut * 1000)
           let endDate = new Date(day.fin * 1000)
 
@@ -66,13 +50,17 @@ export class AppComponentHome implements OnInit {
             debut: startDate,
             fin: endDate,
             dateDuring: new Date(endDate.getTime() - startDate.getTime() - 3600000),
-            color: color
+            color: day.color,
+            active : false
           }
         })
         .sort((a, b) => a.debut.getTime() - b.debut.getTime())
-        .filter(e => e.debut > new Date())
+        .filter(e => {
+          return e.fin > now
+        })
       this.cours = []
       for(let i = 0; i < cours.length && i < 4; i++) {
+        if(cours[i].debut < now) cours[i].active = true
         this.cours.push(cours[i])
       }
     } else {

@@ -13,6 +13,11 @@
   border: lightgray 1px solid;
 }
 
+.home-cours.active {
+  border-color: #247CA9;
+  border-width: 2px;
+}
+
 .home-cours h4 {
   margin: 0 0 5px;
 }

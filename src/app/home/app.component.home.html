@@ -26,11 +26,11 @@
       <h3>Vos prochains cours</h3>
       <div
         style="display: grid; grid-template-rows: 1fr; grid-auto-columns: 1fr; width: 100%; gap: 10px; box-sizing: border-box">
-        <div *ngFor="let data of cours" class="home-cours" style="grid-row: 1; background-color: {{data.color}}">
+        <div *ngFor="let data of cours" class="home-cours" style="grid-row: 1;" [style.background-color]="data.color" [ngClass]="(data.active) ? 'active' : ''">
           <h4 class="subject">{{data.mat}}</h4>
           <div><span class="mdi mdi-map-marker"></span> {{data.salle}}</div>
           <div><span class="mdi mdi-account"></span> {{data.prof}}</div>
-          <div><span class="mdi mdi-calendar">{{data.debut.toLocaleDateString('fr-FR', {
+          <div><span class="mdi mdi-calendar"> {{data.debut.toLocaleDateString('fr-FR', {
             weekday: "long",
             day: "numeric",
             month: "long",

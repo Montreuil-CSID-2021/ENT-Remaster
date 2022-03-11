@@ -8,7 +8,8 @@ export interface EDTDay {
   debut: number,
   debutText: string,
   fin: number,
-  finText: string
+  finText: string,
+  color: string
 }
 
 export interface EdtUser {
