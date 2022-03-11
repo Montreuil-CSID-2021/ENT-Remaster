@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
-import { AppComponent } from './edt/app.component';
+import { AppComponentEdt } from './edt/app.component.edt';
 import {AppComponentHome} from "./home/app.component.home";
 import { AppRoutingModule } from './app-routing.module';
 import {AppComponentRouter} from "./router/app.component.router";
@@ -16,7 +16,7 @@ import { NgTwitterTimelineModule } from 'ng-twitter-timeline';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponentEdt,
     AppComponentHome,
     AppComponentRouter,
     AppComponentNavbar,

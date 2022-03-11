@@ -15,15 +15,36 @@ import {
 import {EDTApi} from "../EDTApi";
 import { ItemModel } from '@syncfusion/ej2-angular-navigations';
 
+import { loadCldr, L10n} from '@syncfusion/ej2-base';
+import * as numberingSystems from 'cldr-data/supplemental/numberingSystems.json';
+import * as gregorian from 'cldr-data/main/fr/ca-gregorian.json';
+import * as numbers from 'cldr-data/main/fr/numbers.json';
+import * as timeZoneNames from 'cldr-data/main/fr/timeZoneNames.json';
+
+// Angular CLI 8.0 below versions
+loadCldr(numberingSystems, gregorian, numbers, timeZoneNames)
+L10n.load({
+  'fr': {
+    'schedule': {
+      'day': 'Journée',
+      'week': 'Semaine',
+      'month': 'Mois',
+      'today': "Aujourd'hui"
+    },
+    'calendar': {
+      'today': "Aujourd'hui"
+    }
+  }
+});
 
 @Component({
   selector: 'app-edt',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  templateUrl: './app.component.edt.html',
+  styleUrls: ['./app.component.edt.css'],
   providers: [DayService, WeekService, MonthService, AgendaService, ExcelExportService]
 })
 
-export class AppComponent implements OnInit {
+export class AppComponentEdt implements OnInit {
   @ViewChild('scheduleObj') scheduleObj!: ScheduleComponent;
 
   private edtApi: EDTApi

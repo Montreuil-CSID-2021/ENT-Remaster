@@ -20,7 +20,8 @@
     currentView="Week"
     cssClass='schedule-event-template'
     (eventRendered)="applyCategoryColor($event)"
-    (actionBegin)="onActionBegin($event)">
+    (actionBegin)="onActionBegin($event)"
+    locale="fr">
     <e-views>
       <e-view option="Day"></e-view>
       <e-view option="Week"></e-view>
