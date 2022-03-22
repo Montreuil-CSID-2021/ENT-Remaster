@@ -40,16 +40,14 @@ export class AppComponentHome implements OnInit {
       this.logged = true
       let cours = this.edtApi.user.edt.days
         .map((day): homeCours => {
-          let startDate = new Date(day.debut * 1000)
-          let endDate = new Date(day.fin * 1000)
 
           return {
-            mat: day.mat,
-            prof: day.prof,
-            salle: day.salle,
-            debut: startDate,
-            fin: endDate,
-            dateDuring: new Date(endDate.getTime() - startDate.getTime() - 3600000),
+            mat: day.subject,
+            prof: day.teacher,
+            salle: day.location,
+            debut: day.startDate,
+            fin: day.endDate,
+            dateDuring: new Date(day.endDate.getTime() - day.startDate.getTime() - 3600000),
             color: day.color,
             active : false
           }

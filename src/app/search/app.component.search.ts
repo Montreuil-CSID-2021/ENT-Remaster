@@ -47,27 +47,25 @@ export class AppComponentSearch implements OnInit {
       this.nbCours = this.edtApi.user.edt.days.length
       this.cours = this.edtApi.user.edt.days
         .map((day): searchCours => {
-          let startDate = new Date(day.debut * 1000)
-          let endDate = new Date(day.fin * 1000)
-          let duringDate = new Date(endDate.getTime() - startDate.getTime() - 3600000)
+          let duringDate = new Date(day.endDate.getTime() - day.startDate.getTime() - 3600000)
 
           return {
-            mat: day.mat,
-            prof: day.prof,
-            salle: day.salle,
-            debut: startDate,
-            fin: endDate,
+            mat: day.subject,
+            prof: day.teacher,
+            salle: day.location,
+            debut: day.startDate,
+            fin: day.endDate,
             dateDuring: duringDate,
             color: day.color,
-            dateForFiltre: `${startDate.toLocaleDateString('fr-FR', {
+            dateForFiltre: `${day.startDate.toLocaleDateString('fr-FR', {
               weekday: "long",
               day: "numeric",
               month: "long",
               year: "numeric"
-            })} ${startDate.toLocaleTimeString('fr-FR', {
+            })} ${day.startDate.toLocaleTimeString('fr-FR', {
               hour: "numeric",
               minute: "numeric"
-            })} - ${endDate.toLocaleTimeString('fr-FR', {
+            })} - ${day.endDate.toLocaleTimeString('fr-FR', {
               hour: "numeric",
               minute: "numeric"
             })} (${duringDate.toLocaleTimeString('fr-FR', {hour: "numeric", minute: "numeric"})})`

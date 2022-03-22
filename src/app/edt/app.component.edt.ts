@@ -86,16 +86,14 @@ export class AppComponentEdt implements OnInit {
   updateEvents() {
     if(this.edtApi.user) {
       this.scheduleObj.eventSettings.dataSource = this.edtApi.user.edt.days.map(e => {
-        let startDate = new Date(e.debut * 1000)
-        let endDate = new Date(e.fin * 1000)
 
         return {
-          Subject: e.mat,
-          StartTime: startDate,
-          EndTime: endDate,
-          DuringTime: new Date(endDate.getTime() - startDate.getTime() - 3600000),
-          Location: e.salle,
-          Teacher: e.prof,
+          Subject: e.subject,
+          StartTime: e.startDate,
+          EndTime: e.endDate,
+          DuringTime: new Date(e.endDate.getTime() - e.startDate.getTime() - 3600000),
+          Location: e.location,
+          Teacher: e.teacher,
           color: e.color
         }
       })
