@@ -1,20 +1,6 @@
 import * as Events from "events";
 import axios from "axios"
 
-export interface ApiUser {
-  username: string,
-  defaultEdt: string
-}
-
-export interface ApiDay {
-  subject: string,
-  teacher: string,
-  location: string,
-  startDate: string,
-  endDate: string,
-  color: string
-}
-
 export interface EDTDay {
   subject: string,
   teacher: string,
@@ -71,7 +57,7 @@ export class EDTApi {
 
   async login(credentials: {username: string, password: string}) {
     return new Promise(resolve => {
-      const url = "/edt"
+      const url = "/iut"
       axios.get(url, {
         auth: {
           username: credentials.username,
@@ -114,7 +100,6 @@ export class EDTApi {
             course.subject = splitSummary[0]?.trim()
             course.type = splitSummary[1]?.trim()
             let startDateExtract = brut.match(/DTSTART;TZID=Europe\/Paris:.*/)
-            console.log((startDateExtract) ? startDateExtract[0].replace("DTSTART;TZID=Europe\/Paris:", '') : "nulllllll")
             course.startDate = (startDateExtract) ? EDTApi.parseICALDate(startDateExtract[0].replace("DTSTART;TZID=Europe\/Paris:", '')) : new Date()
             let endDateExtract = brut.match(/DTEND;TZID=Europe\/Paris:.*/)
             course.endDate = (endDateExtract) ? EDTApi.parseICALDate(endDateExtract[0].replace("DTEND;TZID=Europe\/Paris:", '')) : new Date()
@@ -147,22 +132,6 @@ export class EDTApi {
         resolve(true);
         this.eventEmitter.emit('update')
       })
-
-      /*this.socket.once('login', (user: ApiUser | null) => {
-        if(user) {
-          console.log(user)
-          this.user = {
-            username: user.username,
-            edt: {
-              name : user.defaultEdt,
-              days: []
-            }
-          }
-          resolve(true);
-          this.eventEmitter.emit('update')
-        } else resolve(false)
-      })
-      this.socket.emit('loginForWeb', credentials)*/
     })
   }
 

@@ -1,11 +1,11 @@
 {
-  "/edt": {
+  "/iut": {
     "target": "https://agenda.iut.univ-paris8.fr",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug",
     "pathRewrite": {
-      "^/edt": ""
+      "^/iut": ""
     }
   }
 }

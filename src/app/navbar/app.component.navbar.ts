@@ -17,11 +17,11 @@ export class AppComponentNavbar implements OnInit {
 
   constructor(private dialog: MatDialog, private _router: Router) {
     this.edtApi = EDTApi.getEdtApi()
+    if(!this.edtApi.user) this.dialog.open(DialogComponentLogin)
 
     this.edtApi.eventEmitter.on('update', () => {
       if(this.edtApi.user) {
         this.userConnected = true
-        console.log(this.edtApi.user)
         this.edtName = ` - ${this.edtApi.user.edt.name}`
       } else {
         this.userConnected = false
@@ -29,6 +29,14 @@ export class AppComponentNavbar implements OnInit {
       }
     })
   }
+
+  onNgInit() {
+    setTimeout(() => {
+      console.log(this.edtApi.user)
+
+    }, 100)
+  }
+
 
   login() {
     this.dialog.open(DialogComponentLogin)
@@ -39,11 +47,11 @@ export class AppComponentNavbar implements OnInit {
   }
 
   goToEnt() {
-    this._router.navigateByUrl('/edt')
+    this._router.navigateByUrl('/')
   }
 
   goToHome() {
-    this._router.navigateByUrl('/home')
+    this._router.navigateByUrl('/')
   }
 
   goToSearch() {

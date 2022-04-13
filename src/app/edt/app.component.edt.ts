@@ -79,7 +79,7 @@ export class AppComponentEdt implements OnInit {
       this.edtApi.eventEmitter.on('update', () => {
         this.updateEvents()
       })
-    }, 1000)
+    }, 10)
 
   }
 
@@ -97,6 +97,8 @@ export class AppComponentEdt implements OnInit {
           color: e.color
         }
       })
+    } else {
+      this.scheduleObj.eventSettings.dataSource = []
     }
   }
 
